@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration form</title>
+</head>
+<body>
+    <h3>Student Registration Form</h3>
+
+<form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
+    First name: <input type="text" th:field="*{firstName}"/>
+    <br><br>
+
+    Last name: <input type="text" th:field="*{lastName}"/>
+
+    <br><br>
+
+    Country:
+    <!--
+    <select th:field="*{country}">
+        <option th:value="India">India</option>
+        <option th:value="USA">USA</option>
+        <option th:value="Brazil">Brazil</option>
+    </select> -->
+    <select th:field="*{country}">
+        <option th:each="tempCountry:${countries}" th:value="${tempCountry}" th:text="${tempCountry}" />
+    </select>
+    <!-- loop over the list of countries ,tempCountry is temp loop variable value is for submission and text is for displaying to the user -->
+    <br><br>
+    <input type="submit" value="Submit" />
+
+</form>
+</body>
+</html>
